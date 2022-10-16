@@ -27,7 +27,7 @@ scale_fill_discrete = scale_fill_viridis_d
 
 Read and tidy the data. 
 
-```{r}
+```{r Problem2-1}
 accel_df = 
   read_csv('./Data/accel_data.csv') %>% 
   pivot_longer( 
@@ -41,3 +41,12 @@ accel_df =
 ```
 
 Variables in this dataset include `r colnames(accel_df)`. There are `r nrow(accel_df)` observations in total. 
+
+Aggregate across minutes for each day and create a table. 
+
+```{r Problem2-2}
+accel_aggregate = accel_df %>%
+  group_by(week, day) %>%
+  summarise(total_activity = sum(activity_counts)) 
+```
+
