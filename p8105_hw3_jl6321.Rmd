@@ -52,5 +52,7 @@ accel_aggregate = accel_df %>%
     names_from = "day",
     values_from = "total_activity"
   ) 
+accel_aggregated = accel_aggregate[, c(1, 3, 7, 8, 6, 2, 4, 5)]
+accel_aggregated
 ```
 
