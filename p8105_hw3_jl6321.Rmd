@@ -56,3 +56,11 @@ accel_aggregated = accel_aggregate[, c(1, 3, 7, 8, 6, 2, 4, 5)]
 accel_aggregated
 ```
 
+There does not seem to be any apparent trend based on the table besides that the total activities on the 4th and 5th Saturday tend to be low. 
+
+Make a single-panel plot. 
+
+```{r}
+
+```
+
