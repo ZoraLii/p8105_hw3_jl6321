@@ -25,6 +25,8 @@ scale_fill_discrete = scale_fill_viridis_d
 
 ## Problem 2
 
+Read and tidy the data. 
+
 ```{r}
 accel_df = 
   read_csv('./Data/accel_data.csv') %>% 
@@ -38,3 +40,4 @@ accel_df =
   relocate(if_weekend, .after = day_id)
 ```
 
+Variables in this dataset include `r colnames(accel_df)`. There are `r nrow(accel_df)` observations in total. 
