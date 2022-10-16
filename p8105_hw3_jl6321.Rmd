@@ -60,7 +60,7 @@ There does not seem to be any apparent trend based on the table besides that the
 
 Make a single-panel plot. 
 
-```{r}
+```{r Problem2-3}
 accel_df %>% 
   mutate(minute = as.numeric(minute)) %>% 
   group_by(day, minute) %>% 
@@ -74,4 +74,7 @@ accel_df %>%
     caption = "Data from accel.csv dataset") + 
   scale_x_continuous(breaks = c(0:24) * 60, labels = c(0:24))
 ```
+
+According to the graph, we can conclude that there tends to be most activity on average around 9pm on Friday and 11am on Sunday. The average activity seems to be low from 11pm to 5am the next day. 
+
 
