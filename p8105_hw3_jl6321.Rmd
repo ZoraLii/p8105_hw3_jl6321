@@ -90,9 +90,25 @@ This dataset consists of `r nrow(ny_noaa)` rows and `r ncol(ny_noaa)` columns. T
 
 Clean the dataset. 
 
-```{r}
+```{r Problem3-1}
 ny_noaa_tidy = 
   ny_noaa %>%
-  separate(date, into = c("year", "month", "day"), sep = "-") 
+  separate(date, into = c("year", "month", "day"), sep = "-") %>%
+  mutate(
+    prcp = as.double(prcp) / 10, 
+    tmax = as.double(tmax) / 10, 
+    tmin = as.double(tmin) / 10
+  )
 ```
 
+Find the most commonly observed snowfall value. 
+
+```{r}
+snowfall = 
+  ny_noaa_tidy %>% 
+  group_by(snow) %>%
+  summarise(n_obs = n()) %>%
+  arrange(desc(n_obs)) 
+```
+
+The most commonly observed value for snowfall is `r snowfall$snow[1]`mm. 
