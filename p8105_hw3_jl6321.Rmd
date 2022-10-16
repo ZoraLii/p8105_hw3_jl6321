@@ -88,4 +88,11 @@ missing_rate = missing_data / (nrow(ny_noaa) * ncol(ny_noaa))
 
 This dataset consists of `r nrow(ny_noaa)` rows and `r ncol(ny_noaa)` columns. The variables include `r colnames(ny_noaa)`. The dataset possesses a missing data rate of `r missing_rate`, which may be an issue because the percentage is greater than 10%. 
 
+Clean the dataset. 
+
+```{r}
+ny_noaa_tidy = 
+  ny_noaa %>%
+  separate(date, into = c("year", "month", "day"), sep = "-") 
+```
 
