@@ -47,6 +47,10 @@ Aggregate across minutes for each day and create a table.
 ```{r Problem2-2}
 accel_aggregate = accel_df %>%
   group_by(week, day) %>%
-  summarise(total_activity = sum(activity_counts)) 
+  summarise(total_activity = sum(activity_counts)) %>%
+  pivot_wider(
+    names_from = "day",
+    values_from = "total_activity"
+  ) 
 ```
 
