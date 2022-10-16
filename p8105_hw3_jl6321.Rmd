@@ -61,6 +61,11 @@ There does not seem to be any apparent trend based on the table besides that the
 Make a single-panel plot. 
 
 ```{r}
-
+accel_df %>% 
+  mutate(minute = as.numeric(minute)) %>% 
+  group_by(day, minute) %>% 
+  summarize(mean_activity_counts = mean(activity_counts)) %>% 
+  ggplot(aes(x = minute, y = mean_activity_counts, color = day)) + 
+  geom_smooth(se = FALSE) 
 ```
 
