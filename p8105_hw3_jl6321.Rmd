@@ -5,6 +5,7 @@ output: github_document
 
 ```{r setup, include=FALSE}
 library(tidyverse)
+library(p8105.datasets)
 
 knitr::opts_chunk$set(
   fig.width = 6,
@@ -76,5 +77,15 @@ accel_df %>%
 ```
 
 According to the graph, we can conclude that there tends to be most activity on average around 9pm on Friday and 11am on Sunday. The average activity seems to be low from 11pm to 5am the next day. 
+
+## Problem 3 
+
+```{r}
+data("ny_noaa")
+missing_data = sum(is.na(ny_noaa))
+missing_rate = missing_data / (nrow(ny_noaa) * ncol(ny_noaa))
+```
+
+This dataset consists of `r nrow(ny_noaa)` rows and `r ncol(ny_noaa)` columns. The variables include `r colnames(ny_noaa)`. The dataset possesses a missing data rate of `r missing_rate`, which may be an issue because the percentage is greater than 10%. 
 
 
