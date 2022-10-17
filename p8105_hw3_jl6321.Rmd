@@ -82,7 +82,7 @@ According to the graph, we can conclude that there tends to be most activity on 
 
 ## Problem 3 
 
-```{r}
+```{r Problem3-0}
 data("ny_noaa")
 missing_data = sum(is.na(ny_noaa))
 missing_rate = missing_data / (nrow(ny_noaa) * ncol(ny_noaa))
@@ -92,7 +92,7 @@ This dataset consists of `r nrow(ny_noaa)` rows and `r ncol(ny_noaa)` columns. T
 
 Clean the dataset. 
 
-```{r Problem3-1}
+```{r Problem3-1-1}
 ny_noaa_tidy = 
   ny_noaa %>%
   separate(date, into = c("year", "month", "day"), sep = "-") %>%
@@ -105,7 +105,7 @@ ny_noaa_tidy =
 
 Find the most commonly observed snowfall value. 
 
-```{r}
+```{r Problem3-1-2}
 snowfall = 
   ny_noaa_tidy %>% 
   group_by(snow) %>%
@@ -116,7 +116,7 @@ snowfall =
 The most commonly observed value for snowfall is `r snowfall$snow[1]`mm. 
 Make a two-panel plot showing the average max temperature in January and in July in each station across years. 
 
-```{r}
+```{r Problem3-2}
 ny_noaa_tidy %>% 
   filter(month == "01" | month == "07") %>% 
   group_by(id, year, month) %>% 
@@ -139,7 +139,7 @@ Make a two-panel plot showing:
 (i) tmax vs tmin for the full dataset 
 (ii) the distribution of snowfall values > 0 and < 100 separately by year.
 
-```{r}
+```{r Problem3-3}
 tmax_vs_tmin = 
   ny_noaa_tidy %>% 
   ggplot(aes(x = tmax, y = tmin)) + 
