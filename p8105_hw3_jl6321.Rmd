@@ -112,3 +112,24 @@ snowfall =
 ```
 
 The most commonly observed value for snowfall is `r snowfall$snow[1]`mm. 
+Make a two-panel plot showing the average max temperature in January and in July in each station across years. 
+
+```{r}
+ny_noaa_tidy %>% 
+  filter(month == "01" | month == "07") %>% 
+  group_by(id, year, month) %>% 
+  summarize(tmax_mean = mean(tmax, rm.na = TRUE)) %>% 
+  ggplot(aes(x = as.integer(year), y = tmax_mean, color = id)) + 
+  geom_point() + 
+  geom_line(alpha = 0.3) +
+  facet_grid(. ~ month) + 
+  labs(
+    title = "Mean Max Temperature in January and July Across Years", 
+    x = "Year", 
+    y = "Mean Max Temperature in C"
+  ) + 
+  theme(legend.position = "none")
+```
+The overall average max temperature in July is higher than that in January. Compared with July, the average max temperature in January seems to have a greater range. Some outliers exist, including one datapoint in January of 1982 and one datapoint in July of 1988. 
+
+
