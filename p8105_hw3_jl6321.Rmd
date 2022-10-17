@@ -6,6 +6,8 @@ output: github_document
 ```{r setup, include=FALSE}
 library(tidyverse)
 library(p8105.datasets)
+library(ggridges)
+library(patchwork)
 
 knitr::opts_chunk$set(
   fig.width = 6,
@@ -130,6 +132,36 @@ ny_noaa_tidy %>%
   ) + 
   theme(legend.position = "none")
 ```
+
 The overall average max temperature in July is higher than that in January. Compared with July, the average max temperature in January seems to have a greater range. Some outliers exist, including one datapoint in January of 1982 and one datapoint in July of 1988. 
 
+Make a two-panel plot showing: 
+(i) tmax vs tmin for the full dataset 
+(ii) the distribution of snowfall values > 0 and < 100 separately by year.
+
+```{r}
+tmax_vs_tmin = 
+  ny_noaa_tidy %>% 
+  ggplot(aes(x = tmax, y = tmin)) + 
+  geom_hex(alpha = 0.9) + 
+  labs(
+    title = "Max Temperature vs. Min Temperature", 
+    x = "Max Temperature in C", 
+    y = "Max Temperature in C", 
+    caption = "Data from the ny_noaa dataset") 
+
+snowfall_distribution = 
+  ny_noaa_tidy %>% 
+  filter(snow > 0 & snow < 100) %>% 
+  ggplot(aes(x = snow, y = year)) + 
+  geom_density_ridges(scale = 0.9, fill = 'chartreuse4') + 
+  labs(
+    title = "The Distribution of Snowfall by Year", 
+    x = "Snowfall in mm", 
+    y = "Year", 
+    caption = "Data from the ny_noaa dataset"
+  ) 
+
+tmax_vs_tmin + snowfall_distribution 
+```
 
